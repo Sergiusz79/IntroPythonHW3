@@ -25,7 +25,6 @@ def count_x_in_list(x, lst):
     return count
 
 def task():
-    i = 0
     n = enter_data('number of length list')
     lst = [enter_data('list item') for i in range(n)]
     x = enter_data('number to find')
