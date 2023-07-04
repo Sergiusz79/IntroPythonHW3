@@ -15,18 +15,32 @@ def enter_data(text):
         print("Error! This is not integer number!")
     return a
 
-def count_x_in_list(x, lst):
-    count = 0
+def search(delta_x, lst):
+    close_values = []
     for i in range(len(lst)):
-        if x == lst[i]:
-            count +=1
-    return count
+        if delta_x[i] == min(delta_x):
+            close_values[i] = lst[i]
+    return close_values    
+
+def search_close_values(x, lst):
+    delta_x = [abs(x - lst[i]) for i in range(len(lst))]
+    close_values = {lst[i] for i in range(len(lst)) if delta_x[i] == min(delta_x)}
+    return close_values
+
+def print_result(close_values):
+    if len(close_values) == 0 or len(close_values) == 1:
+        print('Number close to given is', end=': ')
+        print(*close_values)
+    else:
+        print('Numbers close to given is', end=': ')
+        print(*close_values, sep=', ')
+
 
 def task():
     n = enter_data('number of length list')
     lst = [enter_data('list item') for i in range(n)]
     x = enter_data('number to find')
-    count = count_x_in_list(x, lst)
-    print(f'The number {x} occurs {count} times in list.')
-
+    close_values = search_close_values(x, lst)
+    print_result(close_values)
+    
 task()
